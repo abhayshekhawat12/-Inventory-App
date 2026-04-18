@@ -41,7 +41,7 @@ export default function Inventory() {
       <div style={{ background: 'white', borderRadius: '8px', padding: '20px', border: '1px solid #ddd', marginBottom: '20px' }}>
         <h2 style={{ fontSize: '16px', marginBottom: '16px' }}>Add New Item</h2>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '12px', marginBottom: '16px' }}>
-          {[['name','Product Name'],['category','Category'],['stock_level','Stock Level'],['min_stock','Min Stock'],['max_stock','Max Stock'],['unit_price','Unit Price ($)']].map(([key, label]) => (
+          {[['name','Product Name'],['category','Category'],['stock_level','Stock Level'],['min_stock','Min Stock'],['max_stock','Max Stock'],['unit_price','Unit Price (₹)']].map(([key, label]) => (
             <div key={key}>
               <label style={labelStyle}>{label}</label>
               <input style={inputStyle} value={form[key]} onChange={e => setForm({...form, [key]: e.target.value})} placeholder={label} />
@@ -71,7 +71,7 @@ export default function Inventory() {
                 <td style={{ padding: '10px', borderBottom: '1px solid #dee2e6', color: '#666' }}>{item.category}</td>
                 <td style={{ padding: '10px', borderBottom: '1px solid #dee2e6', color: item.stock_level <= item.min_stock ? '#e74c3c' : '#27ae60', fontWeight: 'bold' }}>{item.stock_level}</td>
                 <td style={{ padding: '10px', borderBottom: '1px solid #dee2e6', color: '#666' }}>{item.min_stock}</td>
-                <td style={{ padding: '10px', borderBottom: '1px solid #dee2e6', color: '#666' }}>${item.unit_price}</td>
+                <td style={{ padding: '10px', borderBottom: '1px solid #dee2e6', color: '#666' }}>₹{item.unit_price}</td>
                 <td style={{ padding: '10px', borderBottom: '1px solid #dee2e6' }}>
                   <button onClick={() => handleDelete(item.id)} style={{ background: '#fdecea', color: '#e74c3c', border: '1px solid #e74c3c', padding: '4px 10px', borderRadius: '4px', cursor: 'pointer', fontSize: '12px' }}>Delete</button>
                 </td>

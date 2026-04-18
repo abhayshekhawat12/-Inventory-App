@@ -1,5 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import StockCard from '../components/StockCard';
 
 const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
@@ -8,20 +9,19 @@ export default function Dashboard() {
   const [summary, setSummary] = useState({ total_items: 0, low_stock: 0, total_value: 0, categories: 0 });
   const [inventory, setInventory] = useState([]);
 
+  const router = useRouter();
+
   useEffect(() => {
-    fetch(`${API}/api/inventory/summary`).then(r => r.json()).then(setSummary).catch(() => {});
-    fetch(`${API}/api/inventory`).then(r => r.json()).then(setInventory).catch(() => {});
-  }, []);
+    if (!localStorage.getItem('isLoggedIn')) {
+      router.push('/login');
+    } else {
+      fetch(`${API}/api/inventory/summary`).then(r => r.json()).then(setSummary).catch(() => {});
+      fetch(`${API}/api/inventory`).then(r => r.json()).then(setInventory).catch(() => {});
+    }
+  }, [router]);
 
-  const sampleInventory = [
-    { id: 1, name: 'Laptop Pro X', category: 'Electronics', stock_level: 45, min_stock: 10, unit_price: 999 },
-    { id: 2, name: 'Office Chair', category: 'Furniture', stock_level: 8, min_stock: 10, unit_price: 299 },
-    { id: 3, name: 'Printer Paper', category: 'Stationery', stock_level: 200, min_stock: 50, unit_price: 12 },
-    { id: 4, name: 'Wireless Mouse', category: 'Electronics', stock_level: 5, min_stock: 15, unit_price: 49 },
-  ];
-
-  const displayInventory = inventory.length > 0 ? inventory : sampleInventory;
-  const displaySummary = summary.total_items > 0 ? summary : { total_items: 156, low_stock: 12, total_value: '48,250', categories: 8 };
+  const displayInventory = inventory;
+  const displaySummary = summary;
 
   return (
     <div>
@@ -31,7 +31,7 @@ export default function Dashboard() {
       <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', marginBottom: '24px' }}>
         <StockCard title="Total Items" value={displaySummary.total_items} icon="📦" color="#3498db" />
         <StockCard title="Low Stock" value={displaySummary.low_stock} icon="⚠️" color="#e74c3c" />
-        <StockCard title="Total Value" value={`$${displaySummary.total_value}`} icon="💰" color="#2ecc71" />
+        <StockCard title="Total Value" value={`₹${displaySummary.total_value}`} icon="💰" color="#2ecc71" />
         <StockCard title="Categories" value={displaySummary.categories} icon="🏷️" color="#9b59b6" />
       </div>
 
@@ -52,7 +52,7 @@ export default function Dashboard() {
                 <td style={{ padding: '10px', borderBottom: '1px solid #dee2e6', color: '#666' }}>{item.category}</td>
                 <td style={{ padding: '10px', borderBottom: '1px solid #dee2e6', fontWeight: 'bold' }}>{item.stock_level}</td>
                 <td style={{ padding: '10px', borderBottom: '1px solid #dee2e6', color: '#666' }}>{item.min_stock}</td>
-                <td style={{ padding: '10px', borderBottom: '1px solid #dee2e6', color: '#666' }}>${item.unit_price}</td>
+                <td style={{ padding: '10px', borderBottom: '1px solid #dee2e6', color: '#666' }}>₹{item.unit_price}</td>
                 <td style={{ padding: '10px', borderBottom: '1px solid #dee2e6' }}>
                   <span style={{
                     background: item.stock_level <= item.min_stock ? '#fdecea' : '#eafaf1',

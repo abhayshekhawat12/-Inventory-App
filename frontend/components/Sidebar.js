@@ -12,8 +12,10 @@ const links = [
 
 export default function Sidebar() {
   const pathname = usePathname();
+  if (pathname === '/login') return null;
+
   return (
-    <div style={{ width: '200px', background: '#2c3e50', minHeight: '100vh', padding: '20px 0' }}>
+    <div style={{ width: '200px', background: '#2c3e50', minHeight: '100vh', padding: '20px 0', display: 'flex', flexDirection: 'column' }}>
       <div style={{ padding: '0 20px 20px 20px', borderBottom: '1px solid #34495e' }}>
         <h2 style={{ color: 'white', fontSize: '16px' }}>📦 Inventory App</h2>
       </div>
@@ -33,6 +35,17 @@ export default function Sidebar() {
           </Link>
         ))}
       </nav>
+      <div style={{ marginTop: 'auto', padding: '20px' }}>
+        <button 
+          onClick={() => {
+            localStorage.removeItem('isLoggedIn');
+            window.location.href = '/login';
+          }}
+          style={{ width: '100%', padding: '10px', background: '#e74c3c', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer', fontSize: '14px', fontWeight: 'bold' }}
+        >
+          🚪 Logout
+        </button>
+      </div>
     </div>
   );
 }

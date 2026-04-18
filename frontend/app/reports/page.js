@@ -55,7 +55,7 @@ export default function Reports() {
                 <tr key={i} style={{ background: i % 2 === 0 ? 'white' : '#f8f9fa' }}>
                   <td style={{ padding: '8px', borderBottom: '1px solid #dee2e6' }}>{row.category}</td>
                   <td style={{ padding: '8px', borderBottom: '1px solid #dee2e6', fontWeight: 'bold' }}>{row.total_stock}</td>
-                  <td style={{ padding: '8px', borderBottom: '1px solid #dee2e6', color: '#27ae60' }}>${row.total_value}</td>
+                  <td style={{ padding: '8px', borderBottom: '1px solid #dee2e6', color: '#27ae60' }}>₹{row.total_value}</td>
                 </tr>
               ))}
             </tbody>

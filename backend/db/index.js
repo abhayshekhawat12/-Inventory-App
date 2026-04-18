@@ -32,14 +32,7 @@ db.public.none(`
     created_at TIMESTAMP DEFAULT NOW()
   );
 
-  INSERT INTO suppliers (name, email, phone, address, rating) VALUES 
-  ('TechCorp Electronics', 'sales@techcorp.com', '555-0100', '123 Silicon Valley', 5),
-  ('Global Logistics', 'contact@globallogistics.com', '555-0200', '456 Freight St', 4);
 
-  INSERT INTO inventory (name, category, stock_level, min_stock, max_stock, unit_price, supplier_id) VALUES 
-  ('Wireless Mouse', 'Electronics', 150, 20, 300, 25.99, 1),
-  ('Mechanical Keyboard', 'Electronics', 5, 15, 100, 89.99, 1),
-  ('Shipping Boxes (L)', 'Packaging', 500, 100, 2000, 1.50, 2);
 `);
 
 console.log('Database tables ready (In-Memory) ✅');
