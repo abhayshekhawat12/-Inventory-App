@@ -9,7 +9,7 @@ export default function Inventory() {
   const [status, setStatus] = useState('');
 
   const fetchItems = () => {
-    fetch(`${API}/api/inventory`).then(r => r.json()).then(setItems).catch(() => {});
+    fetch(`${API}/api/inventory?t=${Date.now()}`).then(r => r.json()).then(setItems).catch(() => {});
   };
 
   useEffect(() => { fetchItems(); }, []);

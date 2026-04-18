@@ -15,8 +15,8 @@ export default function Dashboard() {
     if (!localStorage.getItem('isLoggedIn')) {
       router.push('/login');
     } else {
-      fetch(`${API}/api/inventory/summary`).then(r => r.json()).then(setSummary).catch(() => {});
-      fetch(`${API}/api/inventory`).then(r => r.json()).then(setInventory).catch(() => {});
+      fetch(`${API}/api/inventory/summary?t=${Date.now()}`).then(r => r.json()).then(setSummary).catch(() => {});
+      fetch(`${API}/api/inventory?t=${Date.now()}`).then(r => r.json()).then(setInventory).catch(() => {});
     }
   }, [router]);
 
