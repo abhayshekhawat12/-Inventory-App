@@ -30,7 +30,7 @@ This platform allows businesses to track stock levels, manage suppliers, receive
 ## 🚀 Deployment
 - **Frontend:** https://inventory-system-five-hazel.vercel.app
 - **Backend:** https://inventory-system-1m5t.onrender.com
-- **Repository:** https://github.com/swanandideshmukh/inventory-system
+- **Repository:** https://github.com/abhayshekhawat12/-Inventory-App
 
 ## 📁 Project Structure
 ```
@@ -68,5 +68,5 @@ inventory-system/
 | GET | /api/reports/demand | Demand forecast |
 
 ## 👩‍💻 Developer
-**Swanandi Deshmukh**
+**Abhay shekhawat**
 Web Development Intern @ Codec Technologies
